@@ -6,9 +6,13 @@ To install dependencies run:
 
 #### `npm install`
 
-Run the project
+Run project
 
 #### `npm start`
+
+Run tests
+
+#### `npm test`
 
 Runs the app in the development mode.
 
