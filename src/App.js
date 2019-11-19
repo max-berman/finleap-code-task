@@ -27,9 +27,10 @@ function App() {
       <h1>{STRINGS.title}</h1>
       <form onSubmit={e => e.preventDefault()} className='search'>
         <SearchInput {...store} />
+        {isLoading && !isError && <span className='spinner' />}
         <DropDown {...store} />
       </form>
-      {isLoading && !isError && <span>Loaing...</span>}
+
       {isError ? <span>Network Error</span> : <SearchResults {...store} />}
     </div>
   )
