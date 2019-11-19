@@ -36,17 +36,15 @@ export default function List({
       .catch(err => setIsError(true))
   }
 
-  return (
-    showDropDown && (
-      <ul className='dropDownList'>
-        {CITIES.filter(
-          res => res.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-        ).map(({ name, id }, i) => (
-          <li key={i} onClick={() => handleItemClick(id)}>
-            {name}
-          </li>
-        ))}
-      </ul>
-    )
-  )
+  return showDropDown ? (
+    <ul className='dropDownList' data-testid='dropDown'>
+      {CITIES.filter(
+        res => res.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+      ).map(({ name, id }, i) => (
+        <li key={i} onClick={() => handleItemClick(id)}>
+          {name}
+        </li>
+      ))}
+    </ul>
+  ) : null
 }

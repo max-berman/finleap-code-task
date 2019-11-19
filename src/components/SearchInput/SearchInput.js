@@ -27,6 +27,7 @@ export default function SearchInput({
         onFocus={hanndleOnFocus}
         onBlur={hanndleOnBlur}
         placeholder={STRINGS.input_placeholder}
+        data-testid='searchInput'
       />
     </div>
   )

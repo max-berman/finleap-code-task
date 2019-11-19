@@ -3,5 +3,6 @@ export const URL = 'https://api.openweathermap.org/data/2.5/weather'
 
 export const STRINGS = {
   title: 'weather monster',
-  input_placeholder: 'Type city name'
+  input_placeholder: 'Type city name',
+  error: 'Problem with Loading Data...'
 }

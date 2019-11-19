@@ -5,6 +5,8 @@ import SearchInput from './components/SearchInput/SearchInput'
 import './App.css'
 import { STRINGS } from '../src/config'
 
+const { error, title } = STRINGS
+
 function App() {
   const [userInput, setUserInput] = useState('')
   const [showDropDown, setShowDropDown] = useState(false)
@@ -24,14 +26,13 @@ function App() {
 
   return (
     <div className='App'>
-      <h1>{STRINGS.title}</h1>
+      <h1>{title}</h1>
       <form onSubmit={e => e.preventDefault()} className='search'>
         <SearchInput {...store} />
         {isLoading && !isError && <span className='spinner' />}
         <DropDown {...store} />
       </form>
-
-      {isError ? <span>Network Error</span> : <SearchResults {...store} />}
+      {isError ? <span>{error}</span> : <SearchResults {...store} />}
     </div>
   )
 }
