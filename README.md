@@ -1,7 +1,5 @@
 This code-challenge is bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-[Code Challenge Instructions](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
 To install dependencies run:
