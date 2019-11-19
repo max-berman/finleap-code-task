@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import DropDown from './components/DropDown/DropDown'
+import SearchResults from './components/SearchResults/SearchResults'
+import SearchInput from './components/SearchInput/SearchInput'
+import './App.css'
+import { STRINGS } from '../src/config'
 
 function App() {
+  const [userInput, setUserInput] = useState('')
+  const [showDropDown, setShowDropDown] = useState(false)
+  const [cityList, setCityList] = useState([])
+  const [isError, setIsError] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const store = {
+    userInput,
+    setUserInput,
+    showDropDown,
+    setShowDropDown,
+    cityList,
+    setCityList,
+    setIsError,
+    setIsLoading
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <h1>{STRINGS.title}</h1>
+      <form onSubmit={e => e.preventDefault()} className='search'>
+        <SearchInput {...store} />
+        <DropDown {...store} />
+      </form>
+      {isLoading && !isError && <span>Loaing...</span>}
+      {isError ? <span>Network Error</span> : <SearchResults {...store} />}
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
