@@ -84,7 +84,8 @@ dl dt {
 .dropDownList li {
   text-align: left;
 }
-.dropDownList li:hover {
+.dropDownList li:hover,
+.dropDownList li.active {
   background: cornflowerblue;
   cursor: pointer;
   color: #fff;

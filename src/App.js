@@ -4,6 +4,8 @@ import SearchResults from './components/SearchResults/SearchResults'
 import SearchInput from './components/SearchInput/SearchInput'
 import './App.css'
 import { STRINGS } from '../src/config'
+import fetchCity from './api/index'
+import { uniqueBy } from './utils'
 
 const { error, title } = STRINGS
 
@@ -13,6 +15,33 @@ function App() {
   const [cityList, setCityList] = useState([])
   const [isError, setIsError] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [activeOption, setActiveOption] = useState(0)
+  const [filteredOptions, setFilteredOptions] = useState([])
+
+  function handleItemClick(id) {
+    setIsLoading(true)
+    return fetchCity(id)
+      .then(({ id, main: { temp_max, temp_min }, name }) => {
+        setCityList((prevState) =>
+          uniqueBy([
+            ...prevState,
+            {
+              id,
+              name,
+              temp_max,
+              temp_min,
+            },
+          ])
+        )
+        setUserInput(name)
+      })
+      .then(() => {
+        setShowDropDown(!showDropDown)
+        setIsLoading(false)
+      })
+      .catch((err) => setIsError(true))
+  }
+
   const store = {
     userInput,
     setUserInput,
@@ -21,13 +50,18 @@ function App() {
     cityList,
     setCityList,
     setIsError,
-    setIsLoading
+    setIsLoading,
+    activeOption,
+    setActiveOption,
+    filteredOptions,
+    setFilteredOptions,
+    handleItemClick,
   }
 
   return (
     <div className='App'>
       <h1>{title}</h1>
-      <form onSubmit={e => e.preventDefault()} className='search'>
+      <form onSubmit={(e) => e.preventDefault()} className='search'>
         <SearchInput {...store} />
         {isLoading && !isError && <span className='spinner' />}
         <DropDown {...store} />
