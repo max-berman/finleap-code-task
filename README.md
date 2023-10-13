@@ -1,5 +1,7 @@
 This code-challenge is bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+[Task](https://github.com/max-berman/finleap-code-task/blob/master/Frontend%20Code%20Challenge.pdf)
+
 ## Available Scripts
 
 To install dependencies run:
