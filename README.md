@@ -4,6 +4,8 @@ This code-challenge is bootstrapped with [Create React App](https://github.com/f
 
 ## Available Scripts
 
+Node Version: 14.18.1
+
 To install dependencies run:
 
 #### `npm install`
